@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>API 연습</title>
+</head>
+<body>
+	<h1>test api</h1>
+	<p></p>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+		crossorigin="anonymous">
+	</script>
+	
+	<script type="text/javascript">
+let apikey = "AIzaSyCK6KJeX1Fjj0ak8rtWxzA15kJEgGHEb_c";
+
+let keyword ="짱구는못말려";
+
+$.ajax({
+
+	url:'https://www.googleapis.com/youtube/v3/search',
+
+	type:'get',
+
+	dataType:'json',
+
+	data:{part:'snippet',key:apikey,q:keyword, maxResults:50,type:'video',videoEmbeddable:'true'},
+
+	success:function (data){
+
+		console.log(data);
+
+		 $.each(data.items, function(i, item) {
+
+			 thumbnail = item.snippet.thumbnails.medium.url; // 썸네일 이미지
+
+			 videoId = item.id.videoId;				 // 비디오 아이디	
+
+
+
+		});    
+
+	}
+
+});
+
+function v_link(videoId){
+	location.href='https://www.youtube.com/watch?v='+videoId;
+}
+
+console.log()
+
+</script>
+</body>
+</html>
